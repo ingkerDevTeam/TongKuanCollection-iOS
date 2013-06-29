@@ -1,0 +1,23 @@
+//
+//  UIViewController+HUD.h
+//  TieXin
+//
+//  Created by Beny on 13-5-7.
+//  Copyright (c) 2013年 Beny. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ATMHudDelegate.h"
+#import <objc/runtime.h>
+
+@interface UIViewController (HUD) <ATMHudDelegate>
+
+@property (nonatomic,strong) ATMHud *hud;
+
+//Progress HUD
+//根据标题显示进度指示器
+-(void)showProgressHUDWithTitle:(NSString *)title;
+//停止HUD
+-(void)stopProgressHUD;
+
+@end

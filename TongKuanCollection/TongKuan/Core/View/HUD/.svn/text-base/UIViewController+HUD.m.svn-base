@@ -1,0 +1,61 @@
+//
+//  UIViewController+HUD.m
+//  TieXin
+//
+//  Created by Beny on 13-5-7.
+//  Copyright (c) 2013年 Beny. All rights reserved.
+//
+
+#import "UIViewController+HUD.h"
+#import "ATMHud.h"
+
+static const char *hudNameKey = "hudNameKay";
+
+@interface UIViewController () 
+
+@end
+
+@implementation UIViewController (HUD)
+
+-(ATMHud *)hud
+{
+    return (ATMHud *)objc_getAssociatedObject(self, hudNameKey);
+}
+
+-(void)setHud:(ATMHud *)hud
+{
+    objc_setAssociatedObject(self, hudNameKey, hud, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(void)createHUD
+{
+    if (![self hud]) {
+        NSLog(@"call");
+        ATMHud *atmhud = [[ATMHud alloc] initWithDelegate:self];
+        [self.view addSubview:atmhud.view];
+        [self setHud:atmhud];
+    }
+}
+
+#pragma mark getter
+//Progress HUD
+//根据标题显示进度指示器
+-(void)showProgressHUDWithTitle:(NSString *)title
+{
+    [self createHUD];
+    [self.hud setCaption:title];
+    [self.hud setActivity:YES];
+    [self.hud setAccessoryPosition:ATMHudAccessoryPositionTop];
+    [self.hud setActivityStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.hud show];
+
+}
+//停止HUD
+-(void)stopProgressHUD
+{
+    [self.hud hide];
+}
+
+
+
+@end

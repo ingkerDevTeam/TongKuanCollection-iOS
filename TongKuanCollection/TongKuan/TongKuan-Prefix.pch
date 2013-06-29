@@ -1,0 +1,49 @@
+//
+// Prefix header for all source files of the 'TongKuan' target in the 'TongKuan' project
+//房间爱sd卡了
+
+#import <Availability.h>
+
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+/****NSUserDefaultkey定义****/
+#define KDKeyUserName @"KDKeyUserName"
+#define KDKeyToken @"KDKeyToken"
+#define KDKeyExpiretime @"KDKeyExpiretime"
+
+//定义请求超时时间
+#define DFRequestTimeOut 40
+
+/****数据请求****/
+//请求地址
+#define DFRequestUrl @"http://tongkuan.yupage.com/index.php?app=api&"
+//#define DFRequestUrl @"http://localhost:8888/tongkuan/index.php?app=api&"
+//时间轴每页数据
+#define DFTimelineLimit 3
+
+//请求类型
+
+typedef NS_ENUM(NSInteger, RequestType) {
+    RequestTypeLogin           = 1,//用户登陆
+    RequestTypeRegister = 2,//用户注册
+    RequestTypeGetUserInfo = 3,//获取用户信息
+    RequestTypeGetProductlist = 4,//获取商品列表
+    RequestTypeGetProductDetail = 5,//获取商品详情
+    RequestTypeGetMyCollection = 6,//获取我的收藏
+    RequestTypeSearchProduct = 7,//搜索商品
+};
+
+/*********定义缓存ID*************/
+
+//商品列表缓存数据
+#define DFCacheProductlist @"CacheProductlist"
+#define DFCacheCollectionlist @"CacheCollectionlist"
+
